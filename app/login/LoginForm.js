@@ -1,35 +1,25 @@
 "use client";
 
-import { useState } from "react";
-import { useRouter } from "next/navigation";
+import { login } from "@/lib/auth";
+import { redirect } from "next/navigation";
+import { useState, useActionState } from "react";
 
-export default function LoginForm({ loginAction }) {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
+export default function LoginForm() {
   const [isOpened, setIsOpened] = useState(false);
-  const router = useRouter();
 
-  async function handleSubmit(e) {
-    e.preventDefault();
-    setLoading(true);
-    setError("");
-
-    const formData = new FormData();
-    formData.append("email", email);
-    formData.append("password", password);
-
-    const result = await loginAction(formData);
-
-    if (result.error) {
-      setError(result.error);
-      setLoading(false);
-    } else if (result.success) {
-      router.push("/"); // Could be /dashboard later
-      router.refresh();
+  const handleLoginRedirect = state => {
+    if (state.message === "Success") {
+      redirect("/dashboard");
     }
-  }
+    return state;
+  };
+  const [stateMessage, formAction, isPending] = useActionState(
+    async (prevState, formData) => {
+      const state = await login(formData);
+      return handleLoginRedirect(state);
+    },
+    { message: "" }
+  );
 
   return (
     <>
@@ -37,7 +27,7 @@ export default function LoginForm({ loginAction }) {
         Or Login with <span>&#8964;</span>
       </p>
       <div className={`grid transition-all duration-300 ${isOpened ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}>
-        <form onSubmit={handleSubmit} className="pt-4 flex flex-col gap-3 overflow-hidden">
+        <form action={formAction} className="pt-4 flex flex-col gap-3 overflow-hidden">
           <div>
             <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
               Email
@@ -45,12 +35,11 @@ export default function LoginForm({ loginAction }) {
             <input
               id="email"
               type="email"
-              value={email}
-              onChange={e => setEmail(e.target.value)}
+              name="email"
               required
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="your@email.com"
-              disabled={loading}
+              disabled={isPending}
             />
           </div>
 
@@ -61,12 +50,11 @@ export default function LoginForm({ loginAction }) {
             <input
               id="password"
               type="password"
-              value={password}
-              onChange={e => setPassword(e.target.value)}
+              name="password"
               required
               className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
               placeholder="••••••••"
-              disabled={loading}
+              disabled={isPending}
             />
           </div>
 
@@ -92,15 +80,17 @@ export default function LoginForm({ loginAction }) {
           <div>
             <button
               type="submit"
-              disabled={loading}
+              disabled={isPending}
               className="w-full py-2 px-4 bg-blue-600 hover:bg-blue-700 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors disabled:opacity-50 cursor-pointer">
-              {loading ? "Logging in..." : "Log In"}
+              {isPending ? "Logging in..." : "Log In"}
             </button>
           </div>
         </form>
       </div>
 
-      {error && <div className="mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded">{error}</div>}
+      {stateMessage.error && (
+        <div className="mb-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded">{stateMessage.message}</div>
+      )}
     </>
   );
 }

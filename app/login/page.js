@@ -1,4 +1,3 @@
-import { login } from "@/lib/auth";
 import LoginForm from "./LoginForm";
 import Image from "next/image";
 import EisLogo from "@/public/eis_logo.svg";
