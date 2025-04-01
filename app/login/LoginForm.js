@@ -1,25 +1,11 @@
 "use client";
 
 import { login } from "@/lib/auth";
-import { redirect } from "next/navigation";
 import { useState, useActionState } from "react";
 
 export default function LoginForm() {
   const [isOpened, setIsOpened] = useState(false);
-
-  const handleLoginRedirect = state => {
-    if (state.message === "Success") {
-      redirect("/dashboard");
-    }
-    return state;
-  };
-  const [stateMessage, formAction, isPending] = useActionState(
-    async (prevState, formData) => {
-      const state = await login(formData);
-      return handleLoginRedirect(state);
-    },
-    { message: "" }
-  );
+  const [stateMessage, formAction, isPending] = useActionState(login, { message: "" });
 
   return (
     <>
