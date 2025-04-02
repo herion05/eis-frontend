@@ -2,7 +2,7 @@
 
 import { login } from "@/lib/auth";
 import { useState, useActionState } from "react";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, UserRound, LockKeyhole } from "lucide-react";
 
 export default function LoginForm() {
   const [isOpened, setIsOpened] = useState(false);
@@ -22,30 +22,36 @@ export default function LoginForm() {
             <label htmlFor="email" className="block text-[13px] md:text-sm font-medium text-gray-700 mb-1">
               Email
             </label>
-            <input
-              id="email"
-              type="email"
-              name="email"
-              required
-              className="w-full px-3 py-2 border border-gray-300 rounded-md text-[14px] md:text-[15px] lg:text-[17px] leading-none focus:outline-none focus:ring-2 focus:ring-blue-500"
-              placeholder="your@email.com"
-              disabled={isPending}
-            />
+            <div className="relative">
+              <UserRound className="absolute top-1/2 left-2 -translate-y-1/2 z-1" size="22" />
+              <input
+                id="email"
+                type="email"
+                name="email"
+                required
+                className="w-full p-2 pl-10 text-[14px] md:text-[15px] lg:text-[17px] leading-none border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 relative z-10"
+                placeholder="your@email.com"
+                disabled={isPending}
+              />
+            </div>
           </div>
 
           <div>
             <label htmlFor="password" className="block text-[13px] md:text-sm font-medium text-gray-700 mb-1">
               Password
             </label>
-            <input
-              id="password"
-              type="password"
-              name="password"
-              required
-              className="w-full px-3 py-2 border border-gray-300 rounded-md text-[14px] md:text-[15px] lg:text-[17px] leading-none focus:outline-none focus:ring-2 focus:ring-blue-500"
-              placeholder="••••••••"
-              disabled={isPending}
-            />
+            <div className="relative">
+              <LockKeyhole className="absolute top-1/2 left-2 -translate-y-1/2" size="22" />
+              <input
+                id="password"
+                type="password"
+                name="password"
+                required
+                className="w-full p-2 pl-10 text-[14px] md:text-[15px] lg:text-[17px] leading-none border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 relative z-10  "
+                placeholder="••••••••"
+                disabled={isPending}
+              />
+            </div>
           </div>
 
           <div className="flex items-center justify-between gap-4">
