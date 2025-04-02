@@ -1152,6 +1152,7 @@ packages:
 
   lucide-react@0.486.0:
     resolution: {integrity: sha512-xWop/wMsC1ikiEVLZrxXjPKw4vU/eAip33G2mZHgbWnr4Nr5Rt4Vx4s/q1D3B/rQVbxjOuqASkEZcUxDEKzecw==}
+
     peerDependencies:
       react: ^16.5.1 || ^17.0.0 || ^18.0.0 || ^19.0.0
 
@@ -2811,7 +2812,9 @@ snapshots:
     dependencies:
       js-tokens: 4.0.0
 
+
   lucide-react@0.486.0(react@19.0.0):
+
     dependencies:
       react: 19.0.0
 
