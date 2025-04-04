@@ -7,7 +7,7 @@ import { Bell } from "lucide-react";
 // Student only, will add lecturer header later
 const Header = () => {
   return (
-    <header className="bg-[#034587] text-white flex items-center justify-between px-4 py-3 sticky top-0">
+    <header className="bg-[#034587] text-white flex items-center justify-between px-4 py-3 sticky top-0 z-10">
       <div>
         <Link href="/">
           <Image src={EisLogo} alt="Eis Logo" height={24}></Image>
