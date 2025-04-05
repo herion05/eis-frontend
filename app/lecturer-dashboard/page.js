@@ -43,7 +43,14 @@ async function LecturerDashboard() {
           </div>
           <div className="grid container mx-auto grid-cols-2 lg:grid-cols-4 gap-4">
             {dashboardItems.map((item, idx) => (
-              <DashboardCard key={idx} title={item.title} Icon={item.icon} bgColor={item.bgColor} href={item.href} />
+              <DashboardCard
+                key={idx}
+                title={item.title}
+                subtitle={item.subtitle}
+                Icon={item.icon}
+                bgColor={item.bgColor}
+                href={item.href}
+              />
             ))}
           </div>
         </main>
