@@ -2,7 +2,6 @@ import Header from "@/app/components/Header";
 import Sidebar from "@/app/components/Sidebar";
 import DashboardCard from "@/app/components/DashboardCard";
 import { redirect } from "next/navigation";
-
 import { User, BookOpen, Users, UserCheck, ClipboardCheck, BarChart, Briefcase, FilePlus } from "lucide-react";
 import { getUser } from "@/lib/auth";
 
@@ -33,18 +32,18 @@ async function LecturerDashboard() {
   return (
     <div className="flex-1 flex flex-col">
       <Header />
-      <div className="flex max-md:flex-col min-h-screen">
+      <div className="flex max-md:flex-col min-h-screen ">
         <Sidebar />
-        <main className="px-8 py-6 grow">
+        <main className="px-5 py-8 sm:px-6 sm:py-10 md:px-8 xl:px-10 xl:py-11 max-w-full min-w-0 grow">
           <div className="container mx-auto">
-            <h1 className="text-4xl text-gray-900 font-light mb-6">
-              Welcome, <span className="text-gray-900">Name LastName</span>
+            <h1 className="text-2xl md:text-3xl xl:text-4xl text-gray-800 font-semibold mb-6 lg:mb-8">
+              Welcome, <span>Name Surname</span>
             </h1>
           </div>
-          <div className="grid container mx-auto grid-cols-2 lg:grid-cols-4 gap-4">
-            {dashboardItems.map((item, idx) => (
+          <div className="container mx-auto grid responsive-dashboard-grid gap-y-6 gap-x-4 lg:gap-x-6 xl:gap-8">
+            {dashboardItems.map((item, index) => (
               <DashboardCard
-                key={idx}
+                key={index}
                 title={item.title}
                 subtitle={item.subtitle}
                 Icon={item.icon}
