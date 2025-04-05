@@ -2,8 +2,15 @@ import LoginForm from "./LoginForm";
 import Image from "next/image";
 import EisLogo from "@/public/eis_logo.svg";
 import { LogIn } from "lucide-react";
+import { getUser } from "@/lib/auth";
+import { redirect } from "next/navigation";
 
-export default function LoginPage() {
+export default async function LoginPage() {
+  const user = await getUser();
+
+  if (user?.role_id === 3) redirect("/lecturer-dashboard");
+  else if (user?.role_id === 2) redirect("/student-dashboard");
+
   return (
     <section className="pt-20 max-w-4xl mx-auto flex items-center flex-col gap-6 text-slate-700">
       <Image src={EisLogo} alt="Eis Logo" />

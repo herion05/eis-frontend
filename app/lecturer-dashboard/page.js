@@ -8,7 +8,8 @@ import { getUser } from "@/lib/auth";
 
 async function LecturerDashboard() {
   const user = await getUser();
-  // if (!user) redirect("/login");
+  if (!user) redirect("/login");
+  if (!user.role_id === 3) redirect("/student-dashboard");
 
   const dashboardItems = [
     { title: "My Profile", icon: User, bgColor: "bg-blue-400", href: "/profile" },
