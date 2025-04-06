@@ -12,7 +12,7 @@ export default function LoginPage() {
           <p className="text-lg lg:text-xl xl:text-[22px] font-bold text-slate-800 mb-6 leading-none lg:leading-none">
             Login to your account
           </p>
-          <button className="flex gap-2 justify-center px-6 py-2 bg-[#046ED9] text-white rounded-sm cursor-pointer">
+          <button className="flex gap-2 justify-center px-6 py-2 bg-epoka-blue-600 text-white rounded-sm cursor-pointer">
             <LogIn />
             <span>Login with Epoka Mail </span>
           </button>

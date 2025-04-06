@@ -5,6 +5,31 @@
   --foreground: #171717;
 }
 
+@theme {
+  --color-card-blue: #2b6fd6;
+  --color-card-green: #33941b;
+  --color-card-red: #d43f3f;
+  --color-card-copper: #b3771e;
+  --color-card-teal: #239494;
+  --color-card-teal-green: #1e944d;
+  --color-card-avocado: #778f1a;
+  --color-card-indigo: #6245d6;
+  --color-card-violet: #a444bd;
+  --color-card-olive: #8f8621;
+  --color-card-magenta: #d1437e;
+  --color-epoka-blue-950: oklch(from var(--color-epoka-blue-900) calc(l - 0.07) c h);
+  --color-epoka-blue-900: oklch(0.38 0.1254 254.56);
+  --color-epoka-blue-50: oklch(0.96 0.025 254.56);
+  --color-epoka-blue-100: oklch(0.92 0.04 254.56);
+  --color-epoka-blue-200: oklch(0.91 0.06 254.56);
+  --color-epoka-blue-300: oklch(0.8 0.09 254.56);
+  --color-epoka-blue-400: oklch(0.69 0.13 254.56);
+  --color-epoka-blue-500: oklch(0.61 0.16 254.56);
+  --color-epoka-blue-600: oklch(0.54 0.16 254.56);
+  --color-epoka-blue-700: oklch(0.48 0.15 254.56);
+  --color-epoka-blue-800: oklch(0.43 0.15 254.56);
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);

@@ -54,30 +54,26 @@ export default function Sidebar() {
   }, [isSidebarExpanded]);
 
   return (
-    <div>
-      <div
-        className={`max-md:overflow-hidden bg-[#E1E8F0] max-md:w-full md:h-screen shadow-lg transition-all duration-200 ease-in-out flex flex-col ${
-          isSidebarExpanded ? "md:w-64" : "md:w-14"
-        }`}>
-        <button
-          onClick={() => setIsSidebarExpanded(!isSidebarExpanded)}
-          className=" p-3 self-start flex justify-center focus:outline-none hover:bg-[#CAD7E5] transition-colors cursor-pointer"
-          aria-label={isSidebarExpanded ? "Collapse sidebar" : "Expand sidebar"}>
-          <div>
-            <Menu size="32" />
-          </div>
-        </button>
+    <div
+      className={`max-md:overflow-hidden bg-epoka-blue-50 max-md:w-full md:h-screen shadow-lg transition-all duration-200 ease-in-out flex flex-col ${
+        isSidebarExpanded ? "md:w-64" : "md:w-14"
+      }`}>
+      <button
+        onClick={() => setIsSidebarExpanded(!isSidebarExpanded)}
+        className=" p-3 self-start flex justify-center focus:outline-none hover:bg-epoka-blue-100 transition-colors cursor-pointer"
+        aria-label={isSidebarExpanded ? "Collapse sidebar" : "Expand sidebar"}>
+        <div>
+          <Menu size="32" />
+        </div>
+      </button>
 
-        <ul className="md:pt-4 transition-all duration-200 ease-in-out" ref={sidebarRef}>
-          {menuItems.map((item, index) => (
-            <li key={index}>
-              <SidebarLink item={item} isSidebarExpanded={isSidebarExpanded} />
-            </li>
-          ))}
-        </ul>
-      </div>
-
-      {/* <div className={`transition-all duration-300 ${isSidebarExpanded ? "w-64" : "w-14"}`}></div> */}
+      <ul className="md:pt-4 transition-all duration-200 ease-in-out" ref={sidebarRef}>
+        {menuItems.map((item, index) => (
+          <li key={index}>
+            <SidebarLink item={item} isSidebarExpanded={isSidebarExpanded} />
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }

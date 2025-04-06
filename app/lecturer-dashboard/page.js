@@ -10,23 +10,29 @@ async function LecturerDashboard() {
   // if (!user) redirect("/login");
 
   const dashboardItems = [
-    { title: "My Profile", icon: User, bgColor: "bg-blue-400", href: "/profile" },
-    { title: "My Courses", subtitle: "List", icon: BookOpen, bgColor: "bg-green-600", href: "/courses" },
-    { title: "Student", subtitle: "List", icon: Users, bgColor: "bg-blue-400", href: "/students" },
-    { title: "Advisor", icon: UserCheck, bgColor: "bg-yellow-600", href: "/advisor" },
+    { title: "My Profile", icon: User, bgColor: "bg-card-blue", href: "/profile" },
+    { title: "My Courses", subtitle: "List", icon: BookOpen, bgColor: "bg-card-green", href: "/courses" },
+    { title: "Student", subtitle: "List", icon: Users, bgColor: "bg-card-blue", href: "/students" },
+    { title: "Advisor", icon: UserCheck, bgColor: "bg-card-copper", href: "/advisor" },
     {
       title: "Admission",
       subtitle: "Undergraduate",
       icon: Users,
-      bgColor: "bg-teal-500",
+      bgColor: "bg-card-teal",
       href: "/admission-undergrad",
     },
-    { title: "Admission", subtitle: "Graduate", icon: Users, bgColor: "bg-teal-500", href: "/admission-grad" },
-    { title: "Survey", subtitle: "My Results", icon: ClipboardCheck, bgColor: "bg-green-600", href: "/survey" },
-    { title: "Reports", icon: BarChart, bgColor: "bg-green-600", href: "/reports" },
-    { title: "Staff", subtitle: "List", icon: Users, bgColor: "bg-purple-500", href: "/staff" },
-    { title: "Job", subtitle: "Follow Up", icon: Briefcase, bgColor: "bg-red-500", href: "/job" },
-    { title: "Form", subtitle: "Staff Application Forms", icon: FilePlus, bgColor: "bg-purple-500", href: "/forms" },
+    { title: "Admission", subtitle: "Graduate", icon: Users, bgColor: "bg-card-teal", href: "/admission-grad" },
+    { title: "Survey", subtitle: "My Results", icon: ClipboardCheck, bgColor: "bg-card-teal-green", href: "/survey" },
+    { title: "Reports", icon: BarChart, bgColor: "bg-card-avocado", href: "/reports" },
+    { title: "Staff", subtitle: "List", icon: Users, bgColor: "bg-card-indigo", href: "/staff" },
+    { title: "Job", subtitle: "Follow Up", icon: Briefcase, bgColor: "bg-card-red", href: "/job" },
+    {
+      title: "Form",
+      subtitle: "Staff Application Forms",
+      icon: FilePlus,
+      bgColor: "bg-card-violet",
+      href: "/forms",
+    },
   ];
 
   return (

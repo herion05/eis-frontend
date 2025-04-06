@@ -42,7 +42,7 @@ export default function SidebarLink({ item, isSidebarExpanded }) {
     <div
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      className="relative flex items-center h-12 hover:bg-[#CAD7E5] transition-all duration-200 cursor-pointer overflow-hidden"
+      className="relative flex items-center h-12 hover:bg-epoka-blue-100 transition-all duration-200 cursor-pointer overflow-hidden"
       ref={linkRef}>
       <span className="min-w-10 flex justify-center text-gray-700 ml-2">{item.icon}</span>
 
