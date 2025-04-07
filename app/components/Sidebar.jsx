@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import {
   Menu,
   Home,
@@ -13,6 +13,7 @@ import {
   Link,
   Book,
   Code,
+  Bell,
 } from "lucide-react";
 import SidebarLink from "./SidebarLink";
 
@@ -31,34 +32,68 @@ const menuItems = [
   { name: "Changelog v.2.2.15", icon: <Code size={20} />, link: "#" },
 ];
 
-export default function Sidebar() {
+export default function Sidebar({ type }) {
   const [isSidebarExpanded, setIsSidebarExpanded] = useState(false);
+  const [stickyStyleObject, setStickyStyleObject] = useState(null);
+  const sidebarRef = useRef(null);
+
+  useEffect(() => {
+    function handleSidebarResizing() {
+      if (!sidebarRef) return;
+      const mq = window.matchMedia("(max-width: 768px)");
+      if (!mq.matches) return;
+      if (!isSidebarExpanded) {
+        sidebarRef.current.style.height = "0";
+      }
+
+      const fullHeight = sidebarRef.current.scrollHeight;
+      if (isSidebarExpanded) {
+        sidebarRef.current.style.height = fullHeight + "px";
+      }
+    }
+
+    handleSidebarResizing();
+  }, [isSidebarExpanded]);
+
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 768px)");
+    if (!mq) return;
+
+    const header = document.getElementById("header");
+    if (header) {
+      setStickyStyleObject({ position: "sticky", top: header.offsetHeight });
+    }
+  }, []);
 
   return (
-    <div className="flex h-screen">
-      <div
-        className={`fixed bg-[#E1E8F0] h-screen shadow-lg transition-all duration-200 ease-in-out ${
-          isSidebarExpanded ? "w-64" : "w-14"
-        }`}>
+    <aside
+      className={`max-md:overflow-hidden bg-epoka-blue-50 max-md:w-full shadow-lg transition-all duration-200 ease-in-out flex flex-col ${
+        isSidebarExpanded ? "md:w-64" : "md:w-14"
+      }`}
+      style={stickyStyleObject ? stickyStyleObject : undefined}>
+      <div className="max-sm:flex max-sm:items-center max-sm:justify-between max-sm:pr-3">
         <button
           onClick={() => setIsSidebarExpanded(!isSidebarExpanded)}
-          className="w-full py-3 flex justify-center focus:outline-none hover:bg-[#CAD7E5] transition-colors cursor-pointer"
+          className=" p-3 self-start flex justify-center focus:outline-none hover:bg-epoka-blue-100 transition-colors cursor-pointer"
           aria-label={isSidebarExpanded ? "Collapse sidebar" : "Expand sidebar"}>
           <div>
             <Menu size="32" />
           </div>
         </button>
 
-        <ul className="mt-4">
-          {menuItems.map((item, index) => (
-            <li key={index}>
-              <SidebarLink item={item} isSidebarExpanded={isSidebarExpanded} />
-            </li>
-          ))}
-        </ul>
+        <button className="sm:hidden flex gap-1 items-center cursor-pointer">
+          <Bell />
+          <span>Notification</span>
+        </button>
       </div>
 
-      <div className={`transition-all duration-300 ${isSidebarExpanded ? "w-64" : "w-14"}`}></div>
-    </div>
+      <ul className="md:pt-4 transition-all duration-200 ease-in-out" ref={sidebarRef}>
+        {menuItems.map((item, index) => (
+          <li key={index}>
+            <SidebarLink item={item} isSidebarExpanded={isSidebarExpanded} />
+          </li>
+        ))}
+      </ul>
+    </aside>
   );
 }

@@ -10,12 +10,12 @@ export default function LoginForm() {
 
   return (
     <>
-      <p
+      <div
         onClick={() => setIsOpened(!isOpened)}
-        className="font-bold flex items-center gap-1 w-fit pr-0.5 cursor-default">
-        <span className="text-[14px] md:text-[15px] lg:text-[17px]">Or Login with</span>
+        className="flex items-center justify-between gap-1 pr-0.5 cursor-pointer">
+        <p className="text-[14px] md:text-[15px] lg:text-[17px] font-semibold">Or Login with</p>
         <ChevronDown className={`transition-transform duration-200 ${isOpened ? "rotate-180" : "rotate-0"}`} />
-      </p>
+      </div>
       <div className={`grid transition-all duration-200 ${isOpened ? "grid-rows-[1fr]" : "grid-rows-[0fr]"}`}>
         <form action={formAction} className="pt-4 px-1 flex flex-col gap-3 overflow-hidden">
           <div>
@@ -73,11 +73,11 @@ export default function LoginForm() {
             </div>
           </div>
 
-          <div>
+          <div className="py-1">
             <button
               type="submit"
               disabled={isPending}
-              className="w-full py-2 px-4 bg-blue-600 hover:bg-blue-700 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors disabled:opacity-50 cursor-pointer">
+              className="w-full py-2 px-4 bg-epoka-blue-600 hover:bg-epoka-blue-700 text-white rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors disabled:opacity-50 cursor-pointer">
               {isPending ? "Logging in..." : "Log In"}
             </button>
           </div>
