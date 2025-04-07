@@ -13,6 +13,7 @@ import {
   Link,
   Book,
   Code,
+  Bell,
 } from "lucide-react";
 import SidebarLink from "./SidebarLink";
 
@@ -31,8 +32,9 @@ const menuItems = [
   { name: "Changelog v.2.2.15", icon: <Code size={20} />, link: "#" },
 ];
 
-export default function Sidebar() {
+export default function Sidebar({ type }) {
   const [isSidebarExpanded, setIsSidebarExpanded] = useState(false);
+  const [stickyStyleObject, setStickyStyleObject] = useState(null);
   const sidebarRef = useRef(null);
 
   useEffect(() => {
@@ -53,19 +55,37 @@ export default function Sidebar() {
     handleSidebarResizing();
   }, [isSidebarExpanded]);
 
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 768px)");
+    if (!mq) return;
+
+    const header = document.getElementById("header");
+    if (header) {
+      setStickyStyleObject({ position: "sticky", top: header.offsetHeight });
+    }
+  }, []);
+
   return (
-    <div
-      className={`max-md:overflow-hidden bg-epoka-blue-50 max-md:w-full md:h-screen shadow-lg transition-all duration-200 ease-in-out flex flex-col ${
+    <aside
+      className={`max-md:overflow-hidden bg-epoka-blue-50 max-md:w-full shadow-lg transition-all duration-200 ease-in-out flex flex-col ${
         isSidebarExpanded ? "md:w-64" : "md:w-14"
-      }`}>
-      <button
-        onClick={() => setIsSidebarExpanded(!isSidebarExpanded)}
-        className=" p-3 self-start flex justify-center focus:outline-none hover:bg-epoka-blue-100 transition-colors cursor-pointer"
-        aria-label={isSidebarExpanded ? "Collapse sidebar" : "Expand sidebar"}>
-        <div>
-          <Menu size="32" />
-        </div>
-      </button>
+      }`}
+      style={stickyStyleObject ? stickyStyleObject : undefined}>
+      <div className="max-sm:flex max-sm:items-center max-sm:justify-between max-sm:pr-3">
+        <button
+          onClick={() => setIsSidebarExpanded(!isSidebarExpanded)}
+          className=" p-3 self-start flex justify-center focus:outline-none hover:bg-epoka-blue-100 transition-colors cursor-pointer"
+          aria-label={isSidebarExpanded ? "Collapse sidebar" : "Expand sidebar"}>
+          <div>
+            <Menu size="32" />
+          </div>
+        </button>
+
+        <button className="sm:hidden flex gap-1 items-center cursor-pointer">
+          <Bell />
+          <span>Notification</span>
+        </button>
+      </div>
 
       <ul className="md:pt-4 transition-all duration-200 ease-in-out" ref={sidebarRef}>
         {menuItems.map((item, index) => (
@@ -74,6 +94,6 @@ export default function Sidebar() {
           </li>
         ))}
       </ul>
-    </div>
+    </aside>
   );
 }

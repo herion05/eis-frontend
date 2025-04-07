@@ -35,7 +35,6 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-  --height-42: calc(var(--spacing) * 42);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -53,4 +52,10 @@ body {
 
 .responsive-dashboard-grid {
   grid-template-columns: repeat(auto-fit, minmax(275px, 1fr));
+}
+
+@media screen and (max-width: 768px) {
+  .responsive-dashboard-grid {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
 }

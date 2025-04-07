@@ -29,7 +29,7 @@ export default function HeaderProfileDropdown() {
         onClick={() => setDropdownOpen(!dropdownOpen)}
         className="flex items-center gap-1 bg-transparent cursor-pointer">
         <div className="w-6 h-8 bg-gray-300 ml-2"></div>
-        <span className="text-white text-sm font-medium">Student Name</span>
+        <span className="text-inherit text-sm font-medium max-sm:hidden">Student Name</span>
         <ChevronDown
           size={16}
           className={`transition-transform duration-100 ${dropdownOpen ? "rotate-180" : "rotate-0"}`}
